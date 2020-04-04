@@ -1,0 +1,74 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title></title></head>
+<body>
+<div class="container-fluid">
+
+    <div class="row">
+		<div class="col-md-12">
+            <div class="card border-success mb-3">
+                <div class="card-body">
+                     <blockquote class="blockquote mb-0">
+                            <p class="text-success">DID SOME ONE SAY WEATHER?</p>
+                     </blockquote>
+                </div>
+             </div>
+        </div>
+	</div>
+
+
+    <div class="row justify-content-md-center">
+
+		<div class="col-md-8">
+            <form class="form-inline"  method="POST">
+                 {% csrf_token %}
+  <div class="form-group mx-sm-3 mb-2">
+
+    {{form.name}}
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Add City</button>
+</form>
+		</div>
+
+	</div>
+
+{% for w in weather %}
+    <div class="row justify-content-md-center">
+
+		<div class="col-md-8">
+            <div class="card">
+                 <div class="card-body">
+
+                     <img src="http://openweathermap.org/img/w/{{w.icon}}.png" alt="Image">
+                      <form action="" method="POST">
+                          {% csrf_token %}
+                        <button type="submit" class="close" name="cross" aria-label="Close" value="{{w.city}}">
+                             <span aria-hidden="true">&times;</span>
+                        </button>
+                     </form>
+                    {{w.city}}
+
+                 </div>
+                 <div class="card-body">
+                    {{w.temperature}}F
+                 </div>
+                 <div class="card-body">
+                    {{w.description}}
+                 </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+{% endfor %}
+
+
+
+</div>
+</body>
+</html>
